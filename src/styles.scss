@@ -58,12 +58,26 @@ $ItecFrontend-theme: mat.define-light-theme((
 
 .app {
   display: flex;
-  flex-direction: column;
-  app-left-sidebar {
-    width: 15rem;
+  flex-direction: row;
+
+  .app-content {
+    width: 100%;
+    height: calc(100vh - var(--navbar-heigth));
+    overflow: auto;
+    padding: 2rem;
   }
-  router-outlet {
-    flex: 1;
+
+  app-left-sidebar {
+    width: 20rem;
+  }
+}
+
+.mat-mdc-snack-bar-container {
+  &.snackbar {
+    --mdc-snackbar-container-color: var(--navbar-color);
+    --mat-mdc-snack-bar-button-color: var(--text-color);
+    --mdc-snackbar-supporting-text-color: var(--text-color);
+    --mdc-snackbar-supporting-text-font: var(--font-raleway);
   }
 }
 
@@ -72,8 +86,37 @@ mat-icon {
   transform: scale(1.3);
 }
 
-.mat-dialog-panel {
-  background-color: var(--navbar-color)!important;
+.lds-dual-ring-button {
+  color: var(--navbar-color);
+  transform: scale(0.4);
+}
+.lds-dual-ring-button,
+.lds-dual-ring-button:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring-button-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring-button:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 html, body {

@@ -1,5 +1,5 @@
 <div class="user-profile-container">
-  <div *ngIf="userProfileService.isLoggedIn()" class="welcome-message">Welcome, user</div>
+  <div *ngIf="userProfileService.isLoggedIn()" class="welcome-message">{{"Welcome, " + userProfile?.username}}</div>
   <button
     mat-icon-button
     color="primary"

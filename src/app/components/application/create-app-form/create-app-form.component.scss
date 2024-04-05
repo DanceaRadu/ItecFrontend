@@ -1,0 +1,44 @@
+.outer-form-container {
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .form-container {
+    width: clamp(500px, 50%, 600px);
+    padding: 2rem;
+    background-color: var(--navbar-color);
+    border-radius: var(--border-radius);
+
+    .endpoint-header {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      mat-form-field {
+        width: 100%;
+      }
+      .submit-button {
+        width: 100%;
+      }
+      .endpoint-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        mat-form-field {
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+
+}

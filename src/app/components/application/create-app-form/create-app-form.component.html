@@ -1,0 +1,46 @@
+<div class="outer-form-container">
+  <div class="form-container">
+    <div class="title">Monitor an application</div>
+    <form [formGroup]="appForm" (submit)="handleSubmit()">
+      <mat-form-field color="accent">
+        <mat-label>Application name</mat-label>
+        <input
+          matInput
+          placeholder="Youtube"
+          formControlName="name"
+          value=""/>
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <mat-label>Application base url</mat-label>
+        <input
+          matInput
+          placeholder="youtube.com"
+          formControlName="baseUrl"
+          value=""/>
+      </mat-form-field>
+      <div class="endpoint-header">Endpoints</div>
+      <div formArrayName="endpoints">
+        <div *ngFor="let endpoint of endpoints.controls; let i = index" [formGroupName]="i" class="endpoint-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Endpoint {{i + 1}}</mat-label>
+            <input matInput formControlName="relativeUrl">
+          </mat-form-field>
+          <button type="button" *ngIf="i !== 0" mat-icon-button color="primary" aria-label="Menu" (click)="removeEndpoint(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button type="button" class="add-endpoint-button tw-mb-8" mat-raised-button (click)="addEndpoint()">Add endpoint</button>
+      </div>
+      <button
+        mat-raised-button
+        color="accent"
+        type="submit"
+        class="submit-button">
+        {{ isLoading ? '' : 'Submit' }}
+        <div *ngIf="isLoading" class="lds-dual-ring-button"></div>
+      </button>
+    </form>
+  </div>
+</div>
+
+
