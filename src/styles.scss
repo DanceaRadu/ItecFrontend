@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$ItecFrontend-primary: mat.define-palette(mat.$indigo-palette);
-$ItecFrontend-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$ItecFrontend-primary: mat.define-palette(mat.$deep-purple-palette);
+$ItecFrontend-accent: mat.define-palette(mat.$deep-purple-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $ItecFrontend-warn: mat.define-palette(mat.$red-palette);
@@ -34,10 +34,54 @@ $ItecFrontend-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($ItecFrontend-theme);
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Raleway:wght@400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --background-color: #d9def1;
+  --navbar-color: white;
+
+  --accent-color: #a47cff;
+  --text-color: black;
+
+  --font-raleway: "Raleway", sans-serif;
+
+  --box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.25);
+  --navbar-heigth: 5rem;
+
+  --border-radius: 0.5rem;
+  --transition-duration: 200ms;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  app-left-sidebar {
+    width: 15rem;
+  }
+  router-outlet {
+    flex: 1;
+  }
+}
+
+mat-icon {
+  color: var(--text-color)!important;
+  transform: scale(1.3);
+}
+
+.mat-dialog-panel {
+  background-color: var(--navbar-color)!important;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

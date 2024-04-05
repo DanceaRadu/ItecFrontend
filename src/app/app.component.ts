@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {UserProfileService} from "./service/user-profile.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'ItecFrontend';
+
+  constructor(private userProfileService: UserProfileService) {
+    userProfileService.getLoggedInUserProfile();
+  }
 }

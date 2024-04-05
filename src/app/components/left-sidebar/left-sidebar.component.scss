@@ -1,0 +1,5 @@
+.outer-container {
+  height: calc(100vh - var(--navbar-heigth));
+  width: 100%;
+  background-color: var(--navbar-color)
+}
