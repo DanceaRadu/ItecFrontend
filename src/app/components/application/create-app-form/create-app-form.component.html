@@ -18,6 +18,26 @@
           formControlName="baseUrl"
           value=""/>
       </mat-form-field>
+      <mat-form-field color="accent">
+        <mat-label>Refresh interval</mat-label>
+        <mat-select formControlName="refreshInterval">
+          <mat-option
+            *ngFor="let option of refreshOptions"
+            [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <mat-label>Time to keep the data</mat-label>
+        <mat-select formControlName="timeToKeep">
+          <mat-option
+            *ngFor="let option of timeToKeepOptions"
+            [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <div class="endpoint-header">Endpoints</div>
       <div formArrayName="endpoints">
         <div *ngFor="let endpoint of endpoints.controls; let i = index" [formGroupName]="i" class="endpoint-container">

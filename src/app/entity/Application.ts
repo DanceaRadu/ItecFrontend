@@ -7,5 +7,7 @@ export interface Application {
   endpoints: Endpoint[];
   status: Status;
   ownerId?: number;
-  baseBath: string;
+  baseUrl: string;
+  refreshInterval: string;
+  timeToKeep: string;
 }

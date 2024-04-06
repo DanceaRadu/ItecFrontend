@@ -1,11 +1,11 @@
 <div class="user-profile-container">
-  <div *ngIf="userProfileService.isLoggedIn()" class="welcome-message">{{"Welcome, " + userProfile?.username}}</div>
+  <div *ngIf="userProfileService.isLoggedIn()" class="welcome-message">{{userProfile?.username}}</div>
   <button
     mat-icon-button
     color="primary"
     aria-label="Menu"
     (click)="handleUserClick()"
-    class="tw-ml-2">
+    class="tw-ml-1">
     <mat-icon>person</mat-icon>
   </button>
 </div>

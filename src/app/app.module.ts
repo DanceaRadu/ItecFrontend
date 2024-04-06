@@ -23,7 +23,18 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
 import { UserProfilePageComponent } from './components/user-profile/user-profile-page/user-profile-page.component';
-
+import { SidebarAppListComponent } from './components/left-sidebar/sidebar-app-list/sidebar-app-list.component';
+import { SidebarAppComponent } from './components/left-sidebar/sidebar-app/sidebar-app.component';
+import {MatOption} from "@angular/material/autocomplete";
+import {MatSelect} from "@angular/material/select";
+import {NgOptimizedImage} from "@angular/common";
+import { UserProfileAppListComponent } from './components/user-profile/user-profile-app-list/user-profile-app-list.component';
+import { UserProfileNotificationListComponent } from './components/user-profile/user-profile-notification-list/user-profile-notification-list.component';
+import { ChooseAppComponent } from './components/application/choose-app/choose-app.component';
+import { SearchBarComponent } from './components/shared/search-bar/search-bar.component';
+import {MatExpansionPanel, MatExpansionPanelDescription, MatExpansionPanelTitle} from "@angular/material/expansion";
+import {MatExpansionModule} from '@angular/material/expansion';
+import {StopMousePropagationDirective} from "./components/shared/directive/stop-mouse-propagation.directive";
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -50,6 +61,13 @@ function initializeKeycloak(keycloak: KeycloakService) {
     UserProfileDialogComponent,
     CreateAppFormComponent,
     UserProfilePageComponent,
+    SidebarAppListComponent,
+    SidebarAppComponent,
+    UserProfileAppListComponent,
+    UserProfileNotificationListComponent,
+    ChooseAppComponent,
+    SearchBarComponent,
+    StopMousePropagationDirective,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +92,13 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatInputModule,
     BrowserAnimationsModule,
     MatProgressSpinner,
+    MatOption,
+    MatSelect,
+    NgOptimizedImage,
+    MatExpansionPanel,
+    MatExpansionPanelTitle,
+    MatExpansionPanelDescription,
+    MatExpansionModule
   ],
   providers: [
     provideAnimationsAsync(),

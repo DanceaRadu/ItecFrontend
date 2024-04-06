@@ -1,0 +1,16 @@
+<div class="app-outer-container">
+  <div class="content-container">
+    <img class="app-image"
+         *ngIf="!imageError"
+         [src]="'https://' + app.basePath + '/favicon.ico'"
+         alt="app"
+         (error)="onImageError($event)">
+    <div *ngIf="imageError" class="fallback-content">
+    </div>
+    <div>{{app.name}}</div>
+  </div>
+
+  <div class="eliminate-button" (click)="removeApp.emit(app.id)">
+    <mat-icon>close</mat-icon>
+  </div>
+</div>

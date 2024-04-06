@@ -17,4 +17,9 @@ export class ApplicationService {
   createApp(app: Application): Observable<Application> {
     return this.http.post<Application>(this.baseUrl, app);
   }
+
+  deleteApp(appId: number): Observable<void> {
+    return this.http.delete<void>(this.baseUrl + "/" + appId);
+  }
+
 }

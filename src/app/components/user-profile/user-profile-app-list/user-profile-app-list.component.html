@@ -1,0 +1,25 @@
+<div class="list-outer-container">
+  <div *ngIf="userProfile === null" class="lds-dual-ring"></div>
+  <button *ngIf="userProfile" mat-raised-button color="accent" class="add-button" [routerLink]="['/apps', 'create']">Add new app</button>
+  <div class="list">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle *ngFor="let app of userProfile?.addedApplications">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{app.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <div class="panel-description">
+              <p>{{app.baseUrl}}</p>
+              <div class="button-container">
+                <button appClickStopPropagation mat-icon-button (click)="handleAppEdit()"><mat-icon>edit</mat-icon></button>
+                <button appClickStopPropagation mat-icon-button (click)="handleAppDelete(app.id)"><mat-icon>delete</mat-icon></button>
+              </div>
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p *ngFor="let endpoint of app.endpoints">{{endpoint.relativeUrl}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
