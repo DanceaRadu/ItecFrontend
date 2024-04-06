@@ -1,5 +1,5 @@
 <div class="list-outer-container">
-  <div class="tw-text-2xl tw-font-bold tw-mb-4">Saved apps</div>
+  <div class="tw-text-2xl tw-font-bold tw-mb-4">Pinned apps</div>
   <app-sidebar-app *ngFor="let app of appList" [app]="app" (removeApp)="removeApp.emit(app.uid)" class="tw-mb-2"></app-sidebar-app>
 </div>
 

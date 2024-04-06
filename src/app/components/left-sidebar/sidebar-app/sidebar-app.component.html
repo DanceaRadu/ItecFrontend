@@ -5,8 +5,7 @@
          [src]="'https://' + app.baseUrl + '/favicon.ico'"
          alt="app"
          (error)="onImageError($event)">
-    <div *ngIf="imageError" class="fallback-content">
-    </div>
+    <div *ngIf="imageError" class="fallback-content"></div>
     <div>{{app.name}}</div>
   </div>
 

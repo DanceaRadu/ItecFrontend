@@ -19,10 +19,12 @@ export class AppPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    if(!this.id) return;
-    this.applicationService.getAppById(parseInt(this.id)).subscribe(application => {
-      this.application = application;
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get('id');
+      if (!this.id) return;
+      this.applicationService.getAppById(parseInt(this.id)).subscribe(application => {
+        this.application = application;
+      });
     });
   }
 }

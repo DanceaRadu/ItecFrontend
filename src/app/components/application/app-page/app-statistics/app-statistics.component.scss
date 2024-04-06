@@ -47,14 +47,32 @@
         font-size: 1.75rem;
         font-weight: bold;
       }
-
     }
 
-    .statistics-chart {
-      background-color: var(--navbar-color);
-      box-shadow: var(--box-shadow);
-      height: 35rem;
-      border-radius:var(--border-radius);
+    .statistics-lower-information {
+      height: 25rem;
+      display: flex;
+      flex-direction: row;
+
+      .statistics-chart {
+        background-color: var(--navbar-color);
+        box-shadow: var(--box-shadow);
+        border-radius:var(--border-radius);
+
+        flex-grow: 1;
+        height: 100%;
+        margin-right: 2rem;
+      }
+
+      .endpoint-summary {
+        background-color: var(--navbar-color);
+        box-shadow: var(--box-shadow);
+        border-radius:var(--border-radius);
+
+        height: 100%;
+        width: 17.5rem;
+      }
+
     }
   }
 }

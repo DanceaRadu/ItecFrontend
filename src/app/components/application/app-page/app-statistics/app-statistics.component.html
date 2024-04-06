@@ -2,24 +2,37 @@
   <div *ngIf="app" class="title">{{'You are now viewing the status of '}}<span (click)="goToAppLink()">{{app?.baseUrl}}</span></div>
   <div class="title" *ngIf="!app">Loading...</div>
   <div class="statistics-inner-container">
+
     <div class="statistics-summary">
+
       <div class="summary-tab">
         <div class="tw-text-lg tw-mb-4">Last checked status</div>
         <div class="status" [ngClass]="getStatusClasses(app?.status)">{{ app?.status }}</div>
       </div>
+
       <div class="vertical-line"></div>
+
       <div class="summary-tab">
         <div class="tw-text-lg tw-mb-4">Number of reported bugs</div>
         <div class="bug-count" [ngClass]="app?.bugs?.length === 0 ? 'healthy' : 'warning'">{{app?.bugs?.length}}</div>
       </div>
+
       <div class="vertical-line"></div>
+
       <div class="summary-tab">
         <div class="tw-text-lg tw-mb-4">Downtime</div>
         <div class="error downtime">25 min</div>
       </div>
-    </div>
-    <div class="statistics-chart">
 
+    </div>
+
+    <div class="statistics-lower-information">
+      <div class="statistics-chart">
+
+      </div>
+      <div class="endpoint-summary">
+
+      </div>
     </div>
   </div>
 </div>
