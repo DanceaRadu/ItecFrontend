@@ -1,1 +1,9 @@
-<p>search-bar works!</p>
+<div class="outer-div">
+  <input
+    type="text"
+    [(ngModel)]="value"
+    (input)="valueChange.emit(value)"
+    (keydown.enter)="enterPressed.emit(value)"
+  />
+  <mat-icon (click)="enterPressed.emit(value)">search</mat-icon>
+</div>

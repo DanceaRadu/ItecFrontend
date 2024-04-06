@@ -1,5 +1,5 @@
 export interface ApplicationShort {
-  id: number;
+  uid: number;
   name: string;
-  basePath: string;
+  baseUrl: string;
 }

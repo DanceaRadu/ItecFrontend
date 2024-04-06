@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
+import {ApplicationService} from "../../../service/application.service";
+import {Application} from "../../../entity/Application";
+import {ApplicationShort} from "../../../entity/ApplicationShort";
 
 @Component({
   selector: 'app-choose-app',
@@ -7,4 +10,15 @@ import { Component } from '@angular/core';
 })
 export class ChooseAppComponent {
 
+  foundApps: Application[] = [];
+  onAdd = new EventEmitter<ApplicationShort>();
+
+  constructor(private applicationService: ApplicationService) {
+  }
+
+  handleSearch(query: string) {
+    this.applicationService.search(query).subscribe(apps => {
+      this.foundApps = apps;
+    })
+  }
 }

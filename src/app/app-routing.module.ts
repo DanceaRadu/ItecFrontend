@@ -9,6 +9,7 @@ import {
 import {
   UserProfileNotificationListComponent
 } from "./components/user-profile/user-profile-notification-list/user-profile-notification-list.component";
+import {AppPageComponent} from "./components/application/app-page/app-page/app-page.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
         component: UserProfileNotificationListComponent,
       },
     ]
+  },
+  {
+    path: 'apps/:id',
+    component: AppPageComponent,
   },
 ];
 

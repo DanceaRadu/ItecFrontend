@@ -1,3 +1,6 @@
-<div>
-  <app-search-bar></app-search-bar>
+<div class="popup">
+  <div class="title">Search for an app</div>
+  <app-search-bar (enterPressed)="handleSearch($event)" class="tw-mb-4"></app-search-bar>
+  <div *ngIf="foundApps.length === 0" class="tw-text-left tw-mb-4">No apps found</div>
+  <app-sidebar-app *ngFor="let app of foundApps" [fullApp]="app" [isSearchComponent]="true" (pinApp)="onAdd.emit($event)" class="tw-mb-2"></app-sidebar-app>
 </div>

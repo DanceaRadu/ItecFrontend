@@ -41,7 +41,7 @@ $ItecFrontend-theme: mat.define-light-theme((
 @tailwind utilities;
 
 :root {
-  --background-color: #d9def1;
+  --background-color: #F2F2F2;
   --navbar-color: white;
 
   --accent-color: #a47cff;
@@ -50,7 +50,7 @@ $ItecFrontend-theme: mat.define-light-theme((
   --font-raleway: "Raleway", sans-serif;
   --font-fredoka: "Fredoka", sans-serif;
 
-  --box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.25);
+  --box-shadow: 0.3rem 0.3rem 0.3rem rgba(100, 100, 100, 0.25);
   --navbar-heigth: 5rem;
 
   --border-radius: 0.5rem;

@@ -14,12 +14,20 @@ export class ApplicationService {
   constructor(private http: HttpClient,) {
   }
 
+  search(query: string): Observable<Application[]> {
+    return this.http.get<Application[]>(this.baseUrl + "/search?query=" + query);
+  }
+
   createApp(app: Application): Observable<Application> {
     return this.http.post<Application>(this.baseUrl, app);
   }
 
   deleteApp(appId: number): Observable<void> {
     return this.http.delete<void>(this.baseUrl + "/" + appId);
+  }
+
+  getAppById(id: number): Observable<Application> {
+    return this.http.get<Application>(this.baseUrl + "/" + id);
   }
 
 }

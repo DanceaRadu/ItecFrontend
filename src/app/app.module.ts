@@ -35,6 +35,9 @@ import { SearchBarComponent } from './components/shared/search-bar/search-bar.co
 import {MatExpansionPanel, MatExpansionPanelDescription, MatExpansionPanelTitle} from "@angular/material/expansion";
 import {MatExpansionModule} from '@angular/material/expansion';
 import {StopMousePropagationDirective} from "./components/shared/directive/stop-mouse-propagation.directive";
+import { AppStatisticsComponent } from './components/application/app-page/app-statistics/app-statistics.component';
+import { AppReportsComponent } from './components/application/app-page/app-reports/app-reports.component';
+import { AppPageComponent } from './components/application/app-page/app-page/app-page.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -68,6 +71,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ChooseAppComponent,
     SearchBarComponent,
     StopMousePropagationDirective,
+    AppStatisticsComponent,
+    AppReportsComponent,
+    AppPageComponent,
   ],
   imports: [
     BrowserModule,

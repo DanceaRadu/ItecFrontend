@@ -26,14 +26,13 @@ export class UserProfileService {
 
     this.http.get<UserProfile>(environment.baseUrl + "/user-profile/me").subscribe((userProfile: UserProfile) => {
       this.userProfileSubject.next(userProfile);
-      console.log(userProfile)
     });
   }
 
   deleteAppFromList(id: number) {
     let userProfile = this.userProfileSubject.value
     if(!userProfile) return;
-    userProfile.addedApplications = userProfile?.addedApplications.filter(app => app.id !== id) || []
+    userProfile.addedApplications = userProfile?.addedApplications.filter(app => app.uid !== id) || []
     this.userProfileSubject.next(userProfile)
   }
 
