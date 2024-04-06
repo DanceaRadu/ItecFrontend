@@ -38,6 +38,8 @@ import {StopMousePropagationDirective} from "./components/shared/directive/stop-
 import { AppStatisticsComponent } from './components/application/app-page/app-statistics/app-statistics.component';
 import { AppPageComponent } from './components/application/app-page/app-page/app-page.component';
 import { ReportsComponent } from './components/application/app-page/reports/reports.component';
+import {BaseChartDirective, provideCharts, withDefaultRegisterables} from 'ng2-charts';
+import { ChartComponent } from './components/application/app-page/app-statistics/chart/chart.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -74,6 +76,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     AppStatisticsComponent,
     AppPageComponent,
     ReportsComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +107,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatExpansionPanel,
     MatExpansionPanelTitle,
     MatExpansionPanelDescription,
-    MatExpansionModule
+    MatExpansionModule,
+    BaseChartDirective
   ],
   providers: [
     provideAnimationsAsync(),
@@ -114,7 +118,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
       multi: true,
       deps: [KeycloakService]
     },
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })

@@ -14,7 +14,7 @@ export class CreateAppFormComponent {
 
   appForm: FormGroup
   isLoading = false;
-  refreshOptions = ["5 sec", "10 sec", "30 sec", "1 min", "5 min", "10 min"]
+  refreshOptions = ["1 sec", "5 sec", "10 sec", "30 sec", "1 min", "5 min", "10 min"]
   timeToKeepOptions = ["1 min", "4 hours", "12 hours", "1 day", "3 days", "7 days"]
   constructor(
     private formBuilder: FormBuilder,

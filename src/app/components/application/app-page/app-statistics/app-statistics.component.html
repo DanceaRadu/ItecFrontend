@@ -28,10 +28,25 @@
 
     <div class="statistics-lower-information">
       <div class="statistics-chart">
-
+        <mat-form-field appearance="fill" class="endpoint-selector">
+          <mat-label>Selected endpoint</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let endpoint of app.endpoints" [value]="endpoint.relativeUrl">{{endpoint.relativeUrl}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <app-chart [logData]="selectedEndpoint ? selectedEndpoint.log : []"></app-chart>
       </div>
       <div class="endpoint-summary">
+        <div class="endpoint-status-title">{{'Status over the last ' + app.timeToKeep}}</div>
+        <div class="endpoint-status">
 
+        </div>
+        <div class="endpoint-status">
+
+        </div>
+        <div class="endpoint-status">
+
+        </div>
       </div>
     </div>
   </div>
