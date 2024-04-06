@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApplicationService} from "../../../service/application.service";
 import {SnackbarService} from "../../../service/snack-bar.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-app-form',
@@ -15,7 +16,8 @@ export class CreateAppFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private appService: ApplicationService,
-    private snackBarService: SnackbarService
+    private snackBarService: SnackbarService,
+    private router: Router
   ) {
     this.appForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -50,9 +52,11 @@ export class CreateAppFormComponent {
     this.isLoading = true
     this.appService.createApp(this.appForm.value).subscribe((response) => {
       this.isLoading = false;
+      this.snackBarService.show('Created new application.')
     }, () => {
       this.isLoading = false;
       this.snackBarService.show('Failed to create application')
+      this.router.navigate(['/user-profile/applications'])
     });
   }
 }

@@ -4,6 +4,7 @@ import {BehaviorSubject} from "rxjs";
 import {UserProfile} from "../entity/UserProfile";
 import {KeycloakService} from "keycloak-angular";
 import {environment} from "../environments/environment.development";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class UserProfileService {
   constructor(
     private http: HttpClient,
     private keycloakService: KeycloakService,
+    private router: Router
   ) { }
 
   getLoggedInUserProfile() {
@@ -36,6 +38,10 @@ export class UserProfileService {
   }
 
   logout() {
-    this.keycloakService.logout();
+    this.keycloakService.logout().then(() => {
+      this.userProfileSubject.next(null);
+      this.keycloakService.clearToken();
+      this.router.navigate(['/']);
+    });
   }
 }

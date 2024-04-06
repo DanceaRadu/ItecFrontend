@@ -9,7 +9,7 @@ import {Observable} from "rxjs";
 })
 export class ApplicationService {
 
-  baseUrl = environment.baseUrl + "/apps";
+  baseUrl = environment.baseUrl + "/application";
 
   constructor(private http: HttpClient,) {
   }

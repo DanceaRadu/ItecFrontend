@@ -1,8 +1,8 @@
-<h2 mat-dialog-title>{{"Welcome, " + userProfile?.username}}</h2>
-<div mat-dialog-content>
-  <p>If you want to see your user profile, click the button below.</p>
+<div mat-dialog-content class="dialog-content">
+  <h2>{{userProfile?.username}}</h2>
+  <p>If you want to see your user profile, or add an app, or do anything else, click the button below.</p>
 </div>
-<div mat-dialog-actions align="end">
+<div mat-dialog-actions align="center">
   <button mat-raised-button color="accent" (click)="handleGoToUserProfile()">User Profile</button>
   <button mat-raised-button (click)="userProfileService.logout()">Log-out</button>
 </div>

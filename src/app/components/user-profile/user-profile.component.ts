@@ -23,7 +23,10 @@ export class UserProfileComponent implements OnInit{
     if(!this.userProfileService.isLoggedIn()) {
       this.userProfileService.login();
     } else {
-      this.dialog.open(UserProfileDialogComponent);
+      this.dialog.open(UserProfileDialogComponent, {
+        height: '250px',
+        width: '300px'
+      });
     }
   }
 
@@ -32,7 +35,4 @@ export class UserProfileComponent implements OnInit{
       (userProfile) => (this.userProfile = userProfile)
     );
   }
-
-
-
 }
