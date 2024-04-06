@@ -16,7 +16,7 @@ export class SidebarAppComponent implements OnInit {
   @Output() pinApp = new EventEmitter<ApplicationShort>();
 
   imageError: boolean = false;
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -40,6 +40,6 @@ export class SidebarAppComponent implements OnInit {
   }
 
   isSelected() {
-    return this.router.url.includes("apps/" + this.app.uid);
+    return this.router.url.includes(this.app.uid + '');
   }
 }

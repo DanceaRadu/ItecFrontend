@@ -55,6 +55,8 @@ export class AppPageComponent implements OnInit, OnDestroy {
           })
           parsedApp.endpoints = newEndpoints
           this.application = parsedApp;
+          console.log(parsedApp)
+          console.log(this.application)
         } catch (error) {
           console.log("Error parsing json")
         }

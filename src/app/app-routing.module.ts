@@ -38,6 +38,10 @@ const routes: Routes = [
     component: AppPageComponent,
   },
   {
+    path: 'apps/edit/:id',
+    component: CreateAppFormComponent,
+  },
+  {
     path: '',
     component: IndexComponent
   },

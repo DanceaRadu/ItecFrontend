@@ -21,7 +21,7 @@
 
       <div class="summary-tab">
         <div class="tw-text-lg tw-mb-4">Downtime</div>
-        <div class="error downtime">25 min</div>
+        <div class="downtime" [ngClass]="app.downTime === 0 ? 'healthy' : 'error'">{{getDownTimeString(app.downTime)}}</div>
       </div>
 
     </div>

@@ -6,10 +6,31 @@
   background-color: var(--navbar-color);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
+  .title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
 
-  .title {
-    font-size: 1.5rem;
-    font-weight: bold;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    .message {
+      width: 50%;
+    }
+  }
+
+  .list {
+
   }
 
 }

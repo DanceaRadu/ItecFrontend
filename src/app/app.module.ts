@@ -41,6 +41,7 @@ import { ReportsComponent } from './components/application/app-page/reports/repo
 import {BaseChartDirective, provideCharts, withDefaultRegisterables} from 'ng2-charts';
 import { ChartComponent } from './components/application/app-page/app-statistics/chart/chart.component';
 import { IndexComponent } from './components/index/index.component';
+import { ReportBugPopupComponent } from './components/application/app-page/reports/report-bug-popup/report-bug-popup.component';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -79,6 +80,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     ReportsComponent,
     ChartComponent,
     IndexComponent,
+    ReportBugPopupComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,10 +26,6 @@ export class UserProfileAppListComponent implements OnInit {
     });
   }
 
-  handleAppEdit() {
-
-  }
-
   handleAppDelete(id: number) {
     this.applicationService.deleteApp(id).subscribe(() => {
       this.userProfileService.deleteAppFromList(id);

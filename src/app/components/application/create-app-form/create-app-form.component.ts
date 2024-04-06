@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApplicationService} from "../../../service/application.service";
 import {SnackbarService} from "../../../service/snack-bar.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserProfileService} from "../../../service/user-profile.service";
+import {catchError, of} from "rxjs";
+import {Application} from "../../../entity/Application";
+import {Endpoint} from "../../../entity/Endpoint";
 
 @Component({
   selector: 'app-create-app-form',
@@ -11,6 +14,9 @@ import {UserProfileService} from "../../../service/user-profile.service";
   styleUrl: './create-app-form.component.scss'
 })
 export class CreateAppFormComponent {
+
+  isEditPage = false;
+  editedAppId?: number;
 
   appForm: FormGroup
   isLoading = false;
@@ -21,7 +27,8 @@ export class CreateAppFormComponent {
     private appService: ApplicationService,
     private snackBarService: SnackbarService,
     private router: Router,
-    private userProfileService: UserProfileService
+    private userProfileService: UserProfileService,
+    private route: ActivatedRoute
   ) {
     this.appForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -29,9 +36,48 @@ export class CreateAppFormComponent {
       refreshInterval: ['', Validators.required],
       timeToKeep: ['', Validators.required],
       endpoints: this.formBuilder.array([
-        this.createEndpoint()
       ])
     })
+
+    if (this.route.snapshot.url[1]?.path === 'edit') {
+      this.isEditPage = true;
+      this.editedAppId = parseInt(this.route.snapshot.params['id']);
+      this.appService
+        .getAppById(this.editedAppId)
+        .pipe(
+          catchError((error) => {
+            if (error.status === 404) router.navigate(['/']);
+            return of(null);
+          }),
+        )
+        .subscribe((response) => {
+          if (response) {
+            console.log(response)
+            this.prepopulateAppForm(response);
+          }
+        });
+    } else {
+      const endpoints = this.appForm.get(
+        'endpoints',
+      ) as FormArray;
+      endpoints.push(this.createEndpoint());
+    }
+  }
+
+  prepopulateAppForm(app: Application) {
+    this.appForm.patchValue({
+      name: app.name,
+      baseUrl: app.baseUrl,
+      refreshInterval: app.refreshInterval,
+      timeToKeep: app.timeToKeep,
+    });
+    const endpoints = this.appForm.get(
+      'endpoints',
+    ) as FormArray;
+    if(!app.endpoints) return;
+    app.endpoints.forEach((endpoint) => {
+      endpoints.push(this.createEndpointFromEndpoint(endpoint));
+    });
   }
 
   get endpoints() {
@@ -44,6 +90,12 @@ export class CreateAppFormComponent {
     });
   }
 
+  createEndpointFromEndpoint(endpoint: Endpoint): FormGroup {
+    return this.formBuilder.group({
+      relativeUrl: [endpoint.relativeUrl, Validators.required]
+    });
+  }
+
   addEndpoint() {
     this.endpoints.push(this.createEndpoint());
   }
@@ -53,17 +105,28 @@ export class CreateAppFormComponent {
   }
 
   handleSubmit() {
-    console.log(this.appForm.value);
     if(!this.appForm.valid) return;
     this.isLoading = true
-    this.appService.createApp(this.appForm.value).subscribe((response) => {
-      this.isLoading = false;
-      this.snackBarService.show('Created new application.')
-      this.userProfileService.getLoggedInUserProfile()
-      this.router.navigate(['/user-profile/apps'])
-    }, () => {
-      this.isLoading = false;
-      this.snackBarService.show('Failed to create application')
-    });
+    if(!this.isEditPage) {
+      this.appService.createApp(this.appForm.value).subscribe((response) => {
+        this.isLoading = false;
+        this.snackBarService.show('Created new application.')
+        this.userProfileService.getLoggedInUserProfile()
+        this.router.navigate(['/user-profile/apps'])
+      }, () => {
+        this.isLoading = false;
+        this.snackBarService.show('Failed to create application')
+      });
+    } else if(this.isEditPage && this.editedAppId) {
+      this.appService.updateApp(this.appForm.value, this.editedAppId).subscribe((response) => {
+        this.isLoading = false;
+        this.snackBarService.show('Updated.')
+        this.userProfileService.getLoggedInUserProfile()
+        this.router.navigate(['/user-profile/apps'])
+      }, () => {
+        this.isLoading = false;
+        this.snackBarService.show('Failed to update application')
+      });
+    }
   }
 }

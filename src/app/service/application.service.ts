@@ -30,4 +30,9 @@ export class ApplicationService {
     return this.http.get<Application>(this.baseUrl + "/" + id);
   }
 
+  updateApp(app: Application, id: number): Observable<Application> {
+    console.log(app)
+    return this.http.put<Application>(this.baseUrl + '/' + id, app);
+  }
+
 }

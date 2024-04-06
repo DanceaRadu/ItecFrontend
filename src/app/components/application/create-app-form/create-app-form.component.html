@@ -1,6 +1,6 @@
 <div class="outer-form-container">
   <div class="form-container">
-    <div class="title">Monitor an application</div>
+    <div class="title">{{isEditPage ? 'Edit you app' : 'Monitor an application'}}</div>
     <form [formGroup]="appForm" (submit)="handleSubmit()">
       <mat-form-field color="accent">
         <mat-label>Application name</mat-label>

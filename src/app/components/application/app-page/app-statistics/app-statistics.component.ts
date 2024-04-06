@@ -24,7 +24,7 @@ export class AppStatisticsComponent implements OnChanges {
   getStatusClasses(status: string | undefined) {
     return {
       'healthy': status === 'Stable',
-      'warning': status === 'Warning',
+      'warning': status === 'Unstable',
       'error': status === 'Down'
     };
   }
@@ -42,4 +42,16 @@ export class AppStatisticsComponent implements OnChanges {
       window.open(baseUrl, '_blank');
     }
   }
+
+  getDownTimeString(downTime: number | undefined): string {
+    if(downTime === undefined) return "no info";
+    if(downTime > 60) {
+      return (downTime/60).toFixed(2) + " minutes";
+    }
+    if(downTime > 3600) {
+      return (downTime/3600).toFixed(2) + " hours";
+    }
+    return Math.floor(downTime) + " seconds";
+  }
+
 }

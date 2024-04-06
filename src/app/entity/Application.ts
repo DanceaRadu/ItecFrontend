@@ -14,5 +14,6 @@ export interface Application {
   timeToKeep?: string;
   ipInfo?: IpInfo;
   userId?: number;
-  bugs?: Bug[]
+  bugs?: Bug[];
+  downTime?: number;
 }
