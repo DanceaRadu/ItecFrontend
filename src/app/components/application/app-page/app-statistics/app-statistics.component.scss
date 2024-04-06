@@ -1,0 +1,60 @@
+.statistics-outer-container {
+  margin-bottom: 2rem;
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    span {
+      color: var(--accent-color);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .statistics-inner-container {
+    box-sizing: border-box;
+    width: 100%;
+
+    .statistics-summary {
+      background-color: var(--navbar-color);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 2rem;
+      border-radius:var(--border-radius);
+      box-sizing: border-box;
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .summary-tab {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .status {
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
+
+      .bug-count {
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
+
+      .downtime {
+        font-size: 1.75rem;
+        font-weight: bold;
+      }
+
+    }
+
+    .statistics-chart {
+      background-color: var(--navbar-color);
+      box-shadow: var(--box-shadow);
+      height: 35rem;
+      border-radius:var(--border-radius);
+    }
+  }
+}
