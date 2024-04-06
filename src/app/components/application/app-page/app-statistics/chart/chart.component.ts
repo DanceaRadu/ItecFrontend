@@ -1,6 +1,8 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {ChartConfiguration, ChartData, ChartDataset, ChartOptions, ChartType} from "chart.js";
 import {EndpointLog} from "../../../../../entity/EndpointLog";
+import _default from "chart.js/dist/plugins/plugin.tooltip";
+import borderColor = _default.defaults.borderColor;
 
 @Component({
   selector: 'app-chart',
@@ -12,11 +14,14 @@ export class ChartComponent implements OnChanges {
     this.lineChartData = {
       datasets: [
         {
-          data: this.logData?.map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
+          data: this.logData
+            ?.sort((a, b) => new Date(a.timestamp!).getTime() - new Date(b.timestamp!).getTime())
+            .slice(-50)
+            .map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
           label: 'Response Time',
-          borderColor: 'rgba(94, 53, 177, 1)',
         } as ChartDataset
       ],
+
     };
   }
 
@@ -35,20 +40,18 @@ export class ChartComponent implements OnChanges {
         //     quarter: 'MMM YYYY'
         //   }
         // }
-      }
+      },
     }
   };
 
-  public chartColors: any[] = [
-    {
-      backgroundColor:["#FF7360", "#6FC8CE", "#FAFFF2", "#FFFCC4", "#B9E8E0"]
-    }];
-
-  // Chart datasets
+// Chart datasets
   public lineChartData: ChartData = {
     datasets: [
       {
-        data: this.logData?.map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
+        data: this.logData
+          ?.sort((a, b) => new Date(a.timestamp!).getTime() - new Date(b.timestamp!).getTime())
+          .slice(-50)
+          .map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
         label: 'Response Time',
       } as ChartDataset
     ],

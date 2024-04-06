@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ApplicationShort} from "../../../entity/ApplicationShort";
 import {Application} from "../../../entity/Application";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-sidebar-app',
@@ -16,7 +16,7 @@ export class SidebarAppComponent implements OnInit {
   @Output() pinApp = new EventEmitter<ApplicationShort>();
 
   imageError: boolean = false;
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -37,5 +37,9 @@ export class SidebarAppComponent implements OnInit {
     if(!this.isSearchComponent) {
       this.router.navigate(['/apps', this.app.uid]);
     }
+  }
+
+  isSelected() {
+    return this.router.url.includes("apps/" + this.app.uid);
   }
 }

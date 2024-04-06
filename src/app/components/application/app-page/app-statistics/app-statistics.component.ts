@@ -8,15 +8,18 @@ import {Endpoint} from "../../../../entity/Endpoint";
   styleUrl: './app-statistics.component.scss'
 })
 export class AppStatisticsComponent implements OnChanges {
+
   ngOnChanges(changes: SimpleChanges): void {
     if(!this.app) return;
     if(this.app.endpoints === undefined) return;
     if(this.app.endpoints.length === 0) return;
     this.selectedEndpoint = this.app.endpoints[0]
+    this.selectedEndpointRelativeUrl = this.selectedEndpoint.relativeUrl;
   }
 
   @Input({required:true}) app!: Application
   selectedEndpoint: Endpoint | undefined;
+  selectedEndpointRelativeUrl: string = "";
 
   getStatusClasses(status: string | undefined) {
     return {
@@ -24,6 +27,10 @@ export class AppStatisticsComponent implements OnChanges {
       'warning': status === 'Warning',
       'error': status === 'Down'
     };
+  }
+
+  onEndpointChange(event: any) {
+    this.selectedEndpoint = this.app.endpoints?.find(endpoint => endpoint.relativeUrl === this.selectedEndpointRelativeUrl);
   }
 
   goToAppLink() {

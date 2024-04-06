@@ -1,4 +1,4 @@
-<div class="app-outer-container" (click)="handleAppClick()">
+<div class="app-outer-container" (click)="handleAppClick()" [ngClass]="isSelected() ? 'selected' : ''">
   <div class="content-container">
     <img class="app-image"
          *ngIf="!imageError"
