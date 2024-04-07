@@ -66,6 +66,14 @@
         width: calc(100% - 20rem);
         height: 100%;
         margin-right: 2rem;
+
+        .upper-chart-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-bottom: 2rem;
+        }
+
       }
       @media screen and (max-width: 1200px) {
         flex-direction: column;

@@ -3,4 +3,26 @@
   height: 100%;
   padding: 1rem;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    mat-form-field {
+      width: 100%;
+      min-height: 100px;
+    }
+    text-area {
+      width: 100%;
+      min-height: 100px;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
 }

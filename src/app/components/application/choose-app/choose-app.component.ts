@@ -11,14 +11,20 @@ import {ApplicationShort} from "../../../entity/ApplicationShort";
 export class ChooseAppComponent {
 
   foundApps: Application[] = [];
+  isLoading = false;
   onAdd = new EventEmitter<ApplicationShort>();
 
   constructor(private applicationService: ApplicationService) {
   }
 
   handleSearch(query: string) {
+    this.foundApps = []
+    this.isLoading = true;
     this.applicationService.search(query).subscribe(apps => {
       this.foundApps = apps;
+      this.isLoading = false;
+    }, () => {
+      this.isLoading = false;
     })
   }
 }

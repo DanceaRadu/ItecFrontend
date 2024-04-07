@@ -17,20 +17,24 @@
     }
   }
 
+  .report-container {
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      .message {
+        width: 50%;
+      }
+    }
 
-  .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
-    .message {
-      width: 50%;
+    .list {
+      margin-top: 2rem;
+      .single-bug-container {
+        display: flex;
+        flex-direction: row;
+      }
     }
   }
-
-  .list {
-
-  }
-
 }

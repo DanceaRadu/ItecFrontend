@@ -52,6 +52,7 @@
         <button type="button" class="add-endpoint-button tw-mb-8" mat-raised-button (click)="addEndpoint()">Add endpoint</button>
       </div>
       <button
+        [disabled]="isLoading"
         mat-raised-button
         color="accent"
         type="submit"

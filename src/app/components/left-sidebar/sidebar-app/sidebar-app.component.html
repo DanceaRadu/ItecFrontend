@@ -9,7 +9,7 @@
     <div>{{app.name}}</div>
   </div>
 
-  <div *ngIf="!isSearchComponent" class="eliminate-button" (click)="removeApp.emit(app.uid)">
+  <div *ngIf="!isSearchComponent" appClickStopPropagation class="eliminate-button" (click)="removeApp.emit(app.uid)">
     <mat-icon>close</mat-icon>
   </div>
   <button appClickStopPropagation *ngIf="isSearchComponent" mat-raised-button color="accent" (click)="pinApp.emit(app)">Add</button>

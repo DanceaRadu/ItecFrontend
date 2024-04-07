@@ -51,7 +51,7 @@ export class AppStatisticsComponent implements OnChanges {
     if(downTime > 3600) {
       return (downTime/3600).toFixed(2) + " hours";
     }
-    return Math.floor(downTime) + " seconds";
+    return Math.ceil(downTime) + " seconds";
   }
 
 }

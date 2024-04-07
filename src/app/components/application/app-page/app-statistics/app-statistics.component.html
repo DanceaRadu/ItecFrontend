@@ -28,12 +28,15 @@
 
     <div class="statistics-lower-information">
       <div class="statistics-chart">
-        <mat-form-field appearance="fill" class="endpoint-selector">
-          <mat-label>Selected endpoint</mat-label>
-          <mat-select [(ngModel)]="selectedEndpointRelativeUrl" (selectionChange)="onEndpointChange($event)">
-            <mat-option *ngFor="let endpoint of (app.endpoints ? app.endpoints : [])" [value]="endpoint.relativeUrl">{{endpoint.relativeUrl}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="upper-chart-container">
+          <mat-form-field appearance="fill" class="endpoint-selector">
+            <mat-label>Selected endpoint</mat-label>
+            <mat-select [(ngModel)]="selectedEndpointRelativeUrl" (selectionChange)="onEndpointChange($event)">
+              <mat-option *ngFor="let endpoint of (app.endpoints ? app.endpoints : [])" [value]="endpoint.relativeUrl">{{endpoint.relativeUrl}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
         <app-chart [logData]="selectedEndpoint ? selectedEndpoint.log : []"></app-chart>
       </div>
       <div class="endpoint-summary">
