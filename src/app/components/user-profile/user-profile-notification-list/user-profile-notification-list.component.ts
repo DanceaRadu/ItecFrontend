@@ -21,4 +21,21 @@ export class UserProfileNotificationListComponent implements OnInit {
   getBugList(): Bug[] {
     return this.userProfile?.addedApplications.flatMap(application => application.bugs ? application.bugs : []) ?? [];
   }
+
+  getAppNameByBugId(id: number): string {
+    const application = this.userProfile?.addedApplications.find(application =>
+      application.bugs!.some(bug => bug.uid === id)
+    );
+
+    if (application) {
+      return application.name;
+    } else {
+      return ''
+    }
+  }
+
+  handleMarkAsResolved(bugId: number): void {
+    this.userProfileService.markBugAsResolved(bugId);
+  }
+
 }

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment.development";
 import {Application} from "../entity/Application";
 import {Observable} from "rxjs";
+import {Ratio} from "../entity/Ratio";
 
 @Injectable({
   providedIn: 'root'
@@ -35,4 +36,7 @@ export class ApplicationService {
     return this.http.put<Application>(this.baseUrl + '/' + id, app);
   }
 
+  getRatioByEndpointId(id: number) {
+    return this.http.get<Ratio>(this.baseUrl + "/ratio/" + id);
+  }
 }

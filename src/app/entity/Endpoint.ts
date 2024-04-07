@@ -7,7 +7,7 @@ export interface Endpoint {
   status?: Status;
   applicationId?: number;
   log?: EndpointLog[];
-  down_ratio: number,
-  stable_ratio: number,
-  unstable_ratio: number
+  down_ratio: string,
+  stable_ratio: string,
+  unstable_ratio: string
 }

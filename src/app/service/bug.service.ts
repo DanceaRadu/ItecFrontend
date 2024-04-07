@@ -9,12 +9,16 @@ import {Observable} from "rxjs";
 })
 export class BugService {
 
-  baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl + '/bug';
   constructor(private http: HttpClient) {
   }
 
   createBugReport(bugReport: Bug): Observable<Bug> {
-    return this.http.post<Bug>(this.baseUrl + '/bug', bugReport)
+    return this.http.post<Bug>(this.baseUrl, bugReport)
+  }
+
+  deleteBugReport(id: number) {
+    return this.http.delete(this.baseUrl + '/' + id)
   }
 
 }

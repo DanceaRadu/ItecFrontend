@@ -1,6 +1,8 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Application} from "../../../../entity/Application";
 import {Endpoint} from "../../../../entity/Endpoint";
+import {ApplicationService} from "../../../../service/application.service";
+import {Ratio} from "../../../../entity/Ratio";
 
 @Component({
   selector: 'app-app-statistics',
@@ -9,17 +11,27 @@ import {Endpoint} from "../../../../entity/Endpoint";
 })
 export class AppStatisticsComponent implements OnChanges {
 
+  constructor(private applicationService: ApplicationService) {
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if(!this.app) return;
     if(this.app.endpoints === undefined) return;
     if(this.app.endpoints.length === 0) return;
     this.selectedEndpoint = this.app.endpoints[0]
     this.selectedEndpointRelativeUrl = this.selectedEndpoint.relativeUrl;
+
+    this.applicationService.getRatioByEndpointId(this.selectedEndpoint?.uid!!).subscribe(ratio => {
+      this.currentRatio = ratio;
+      console.log(ratio)
+    })
+
   }
 
   @Input({required:true}) app!: Application
   selectedEndpoint: Endpoint | undefined;
   selectedEndpointRelativeUrl: string = "";
+  currentRatio: Ratio | null = null;
 
   getStatusClasses(status: string | undefined) {
     return {
@@ -31,6 +43,10 @@ export class AppStatisticsComponent implements OnChanges {
 
   onEndpointChange(event: any) {
     this.selectedEndpoint = this.app.endpoints?.find(endpoint => endpoint.relativeUrl === this.selectedEndpointRelativeUrl);
+    this.applicationService.getRatioByEndpointId(this.selectedEndpoint?.uid!!).subscribe(ratio => {
+      this.currentRatio = ratio;
+      console.log(ratio)
+    })
   }
 
   goToAppLink() {
@@ -52,6 +68,11 @@ export class AppStatisticsComponent implements OnChanges {
       return (downTime/3600).toFixed(2) + " hours";
     }
     return Math.ceil(downTime) + " seconds";
+  }
+
+  getPercentage(ratio: number | undefined) {
+    if(ratio === undefined) return '0%';
+    return Math.round(ratio * 100) + "%";
   }
 
 }

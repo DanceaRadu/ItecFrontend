@@ -5,6 +5,7 @@ import {UserProfile} from "../entity/UserProfile";
 import {KeycloakService} from "keycloak-angular";
 import {environment} from "../environments/environment.development";
 import {Router} from "@angular/router";
+import {BugService} from "./bug.service";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class UserProfileService {
   constructor(
     private http: HttpClient,
     private keycloakService: KeycloakService,
+    private bugService: BugService,
     private router: Router
   ) { }
 
@@ -35,6 +37,18 @@ export class UserProfileService {
     userProfile.addedApplications = userProfile?.addedApplications.filter(app => app.uid !== id) || []
     this.userProfileSubject.next(userProfile)
   }
+
+  markBugAsResolved(id: number) {
+    this.bugService.deleteBugReport(id).subscribe(() => {
+      let userProfile = this.userProfileSubject.value
+      if(!userProfile) return;
+      userProfile.addedApplications.forEach(app => {
+        app.bugs = app.bugs?.filter(bug => bug.uid !== id) || []
+      })
+      this.userProfileSubject.next(userProfile)
+    })
+  }
+
 
   isLoggedIn(): boolean {
     return this.keycloakService.isLoggedIn();

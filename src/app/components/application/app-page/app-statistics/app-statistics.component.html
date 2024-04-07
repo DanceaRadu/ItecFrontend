@@ -45,23 +45,23 @@
         <div class="endpoint-status-container">
           <div class="endpoint-status">
             <div class="round-status green"></div>
-            <div>Healthy</div>
+            <div>Stable</div>
             <div class="percentage">
-              {{(selectedEndpoint?.stable_ratio) ? selectedEndpoint?.stable_ratio : '0' + '%'}}
+              {{getPercentage(currentRatio?.stable)}}
             </div>
           </div>
           <div class="endpoint-status">
             <div class="round-status yellow"></div>
             <div>Unstable</div>
             <div class="percentage">
-              {{(selectedEndpoint?.unstable_ratio) ? selectedEndpoint?.unstable_ratio : '0' + '%'}}
+              {{getPercentage(currentRatio?.unstable)}}
             </div>
           </div>
           <div class="endpoint-status">
             <div class="round-status red"></div>
             <div>Down</div>
             <div class="percentage">
-              {{(selectedEndpoint?.down_ratio) ? selectedEndpoint?.down_ratio : '0' + '%'}}
+              {{getPercentage(currentRatio?.down)}}
             </div>
           </div>
         </div>

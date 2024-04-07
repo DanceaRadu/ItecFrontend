@@ -48,9 +48,7 @@ export class AppPageComponent implements OnInit, OnDestroy {
 
       this.webSocket.onmessage = (event) => {
         try {
-          console.log(event.data)
           const parsedApp: Application = JSON.parse(event.data);
-          console.log(parsedApp)
           let newEndpoints: Endpoint[] = this.application ? JSON.parse(JSON.stringify(this.application.endpoints)) : [];
           this.application?.endpoints?.forEach((endpoint, index) => {
             if (endpoint.log && parsedApp.endpoints && parsedApp.endpoints[index].log != undefined) {
@@ -60,7 +58,7 @@ export class AppPageComponent implements OnInit, OnDestroy {
           parsedApp.endpoints = newEndpoints
           this.application = parsedApp;
         } catch (error) {
-          console.log("Error parsing json")
+          console.log(error)
         }
       };
 

@@ -27,6 +27,12 @@ export class ChartComponent implements OnChanges {
 
   @Input({required:true}) logData?: EndpointLog[];
 
+  public chartColors: Array<any> = [
+    { // all colors in order
+      backgroundColor: ['#d13537', '#b000b5', '#c0ffee']
+    }
+  ]
+
   // Chart options
   lineChartOptions: ChartOptions = {
     responsive: true,
@@ -53,9 +59,10 @@ export class ChartComponent implements OnChanges {
           .slice(-50)
           .map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
         label: 'Response Time',
-        borderColor: 'rgba(123, 123, 124, 1)',
+        borderColor: 'rgb(120, 120, 120)',
+        backgroundColor: 'rgba(200, 0, 0, 1)',
       } as ChartDataset
-    ],
+    ]
   };
 
   // Chart labels (empty in this case as we use time on x-axis)

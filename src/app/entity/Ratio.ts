@@ -1,5 +1,5 @@
 export interface Ratio {
-  down_ratio: number,
-  stable_ratio: number,
-  unstable_ratio: number
+  down: number,
+  stable: number,
+  unstable: number
 }
