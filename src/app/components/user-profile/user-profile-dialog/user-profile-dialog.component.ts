@@ -23,6 +23,6 @@ export class UserProfileDialogComponent {
 
   handleGoToUserProfile() {
     this.dialogRef.closeAll();
-    this.router.navigate(['/user-profile']);
+    this.router.navigate(['/user-profile', 'apps']);
   }
 }

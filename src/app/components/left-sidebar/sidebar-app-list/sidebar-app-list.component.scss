@@ -1,0 +1,9 @@
+.list-outer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  app-sidebar-app {
+    width: 100%;
+  }
+}

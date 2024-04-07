@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserProfile} from "../../../entity/UserProfile";
 import {UserProfileService} from "../../../service/user-profile.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-profile-page',
@@ -9,11 +10,15 @@ import {UserProfileService} from "../../../service/user-profile.service";
 })
 export class UserProfilePageComponent implements OnInit{
   userProfile: UserProfile | null = null;
-  constructor(private userProfileService: UserProfileService) {}
+  constructor(private userProfileService: UserProfileService, private router: Router) {}
 
   ngOnInit(): void {
     this.userProfileService.userProfileSubject.subscribe((userProfile) => {
       this.userProfile = userProfile;
     });
+  }
+
+  isRouteActive(route: string): boolean {
+    return this.router.url.includes(route)
   }
 }

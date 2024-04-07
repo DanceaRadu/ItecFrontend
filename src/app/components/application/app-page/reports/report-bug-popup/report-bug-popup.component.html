@@ -1,0 +1,23 @@
+<div class="outer-container">
+  <form [formGroup]="bugForm" (submit)="handleSubmit()">
+
+    <mat-form-field color="accent">
+      <mat-label>Description</mat-label>
+      <textarea
+        name="description"
+        matInput
+        placeholder="Tell us what happened..."
+        formControlName="description"
+        required
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="8"
+        cdkAutosizeMaxRows="8"
+      ></textarea>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="accent">
+      {{ isLoading ? '' : 'Submit bug' }}
+      <div *ngIf="isLoading" class="lds-dual-ring-button"></div>
+    </button>
+  </form>
+</div>

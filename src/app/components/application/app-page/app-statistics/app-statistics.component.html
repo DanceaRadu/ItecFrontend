@@ -1,0 +1,75 @@
+<div class="statistics-outer-container">
+  <div class="tw-mb-4">
+    <div *ngIf="app" class="title">{{'You are now viewing the status of '}}<span (click)="goToAppLink()">{{app.baseUrl}}</span></div>
+    <div>{{'(' + app.ipInfo?.address + ')'}}</div>
+  </div>
+  <div class="title" *ngIf="!app">Loading...</div>
+  <div class="statistics-inner-container">
+
+    <div class="statistics-summary">
+
+      <div class="summary-tab">
+        <div class="tw-text-lg tw-mb-4">Last checked status</div>
+        <div class="status" [ngClass]="getStatusClasses(app.status)">{{ app.status }}</div>
+      </div>
+
+      <div class="vertical-line"></div>
+
+      <div class="summary-tab">
+        <div class="tw-text-lg tw-mb-4">Number of reported bugs</div>
+        <div class="bug-count" [ngClass]="app.bugs?.length === 0 ? 'healthy' : 'warning'">{{app.bugs?.length}}</div>
+      </div>
+
+      <div class="vertical-line"></div>
+
+      <div class="summary-tab">
+        <div class="tw-text-lg tw-mb-4">Downtime</div>
+        <div class="downtime" [ngClass]="app.downTime === 0 ? 'healthy' : 'error'">{{getDownTimeString(app.downTime)}}</div>
+      </div>
+
+    </div>
+
+    <div class="statistics-lower-information">
+      <div class="statistics-chart">
+        <div class="upper-chart-container">
+          <mat-form-field appearance="fill" class="endpoint-selector">
+            <mat-label>Selected endpoint</mat-label>
+            <mat-select [(ngModel)]="selectedEndpointRelativeUrl" (selectionChange)="onEndpointChange($event)">
+              <mat-option *ngFor="let endpoint of (app.endpoints ? app.endpoints : [])" [value]="endpoint.relativeUrl">{{endpoint.relativeUrl}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="tw-font-bold tw-mr-8">{{'Polling rate ' + app.refreshInterval}}</div>
+        </div>
+
+        <app-chart [logData]="selectedEndpoint ? selectedEndpoint.log : []"></app-chart>
+      </div>
+      <div class="endpoint-summary">
+        <div class="endpoint-status-title">{{'Status over the last ' + app.timeToKeep}}</div>
+        <div class="endpoint-status-container">
+          <div class="endpoint-status">
+            <div class="round-status green"></div>
+            <div>Stable</div>
+            <div class="percentage">
+              {{getPercentage(currentRatio?.stable)}}
+            </div>
+          </div>
+          <div class="endpoint-status">
+            <div class="round-status yellow"></div>
+            <div>Unstable</div>
+            <div class="percentage">
+              {{getPercentage(currentRatio?.unstable)}}
+            </div>
+          </div>
+          <div class="endpoint-status">
+            <div class="round-status red"></div>
+            <div>Down</div>
+            <div class="percentage">
+              {{getPercentage(currentRatio?.down)}}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

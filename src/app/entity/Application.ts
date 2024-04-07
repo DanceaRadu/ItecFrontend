@@ -1,11 +1,19 @@
 import {Status} from "./Status";
 import {Endpoint} from "./Endpoint";
+import {IpInfo} from "./IpInfo";
+import {Bug} from "./Bug";
 
 export interface Application {
-  id: number;
+  uid: number;
   name: string;
-  endpoints: Endpoint[];
-  status: Status;
+  endpoints?: Endpoint[];
+  status?: Status;
   ownerId?: number;
-  baseBath: string;
+  baseUrl: string;
+  refreshInterval?: string;
+  timeToKeep?: string;
+  ipInfo?: IpInfo;
+  userId?: number;
+  bugs?: Bug[];
+  downTime?: number;
 }

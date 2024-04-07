@@ -41,19 +41,23 @@ $ItecFrontend-theme: mat.define-light-theme((
 @tailwind utilities;
 
 :root {
-  --background-color: #d9def1;
+  --background-color: #F2F2F2;
   --navbar-color: white;
 
-  --accent-color: #a47cff;
+  --accent-color: #5e35b1;
   --text-color: black;
+
+  --healthy-color: #1AB501;
+  --warning-color: #F8E008;
+  --error-color: #F80808;
 
   --font-raleway: "Raleway", sans-serif;
   --font-fredoka: "Fredoka", sans-serif;
 
-  --box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.25);
+  --box-shadow: 0.3rem 0.3rem 0.3rem rgba(100, 100, 100, 0.25);
   --navbar-heigth: 5rem;
 
-  --border-radius: 0.5rem;
+  --border-radius: 0.7rem;
   --transition-duration: 200ms;
 }
 
@@ -69,7 +73,7 @@ $ItecFrontend-theme: mat.define-light-theme((
   }
 
   app-left-sidebar {
-    width: 20rem;
+    width: 18rem;
   }
 }
 
@@ -111,6 +115,42 @@ mat-icon {
   border-color: currentColor transparent currentColor transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
+
+@keyframes lds-dual-ring-button {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+//normal loader
+.lds-dual-ring {
+  transform: scale(0.8);
+}
+.lds-dual-ring,
+.lds-dual-ring:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring{
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);
@@ -128,4 +168,22 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.warning {
+  color: var(--warning-color);
+}
+
+.healthy {
+  color: var(--healthy-color);
+}
+
+.vertical-line {
+  width: 2px;
+  height: 100%;
+  background-color: red;
 }
