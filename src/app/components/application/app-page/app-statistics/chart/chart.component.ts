@@ -53,6 +53,7 @@ export class ChartComponent implements OnChanges {
           .slice(-50)
           .map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
         label: 'Response Time',
+        borderColor: 'rgba(123, 123, 124, 1)',
       } as ChartDataset
     ],
   };

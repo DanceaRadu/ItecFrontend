@@ -6,5 +6,8 @@ export interface Endpoint {
   relativeUrl: string;
   status?: Status;
   applicationId?: number;
-  log?: EndpointLog[]
+  log?: EndpointLog[];
+  down_ratio: number,
+  stable_ratio: number,
+  unstable_ratio: number
 }

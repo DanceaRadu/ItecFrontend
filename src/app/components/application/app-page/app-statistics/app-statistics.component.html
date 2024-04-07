@@ -35,6 +35,7 @@
               <mat-option *ngFor="let endpoint of (app.endpoints ? app.endpoints : [])" [value]="endpoint.relativeUrl">{{endpoint.relativeUrl}}</mat-option>
             </mat-select>
           </mat-form-field>
+          <div class="tw-font-bold tw-mr-8">{{'Polling rate ' + app.refreshInterval}}</div>
         </div>
 
         <app-chart [logData]="selectedEndpoint ? selectedEndpoint.log : []"></app-chart>
@@ -45,17 +46,23 @@
           <div class="endpoint-status">
             <div class="round-status green"></div>
             <div>Healthy</div>
-            <div class="percentage">{{12.8 + '%'}}</div>
+            <div class="percentage">
+              {{(selectedEndpoint?.stable_ratio) ? selectedEndpoint?.stable_ratio : '0' + '%'}}
+            </div>
           </div>
           <div class="endpoint-status">
             <div class="round-status yellow"></div>
             <div>Unstable</div>
-            <div class="percentage">{{23.5 + '%'}}</div>
+            <div class="percentage">
+              {{(selectedEndpoint?.unstable_ratio) ? selectedEndpoint?.unstable_ratio : '0' + '%'}}
+            </div>
           </div>
           <div class="endpoint-status">
             <div class="round-status red"></div>
             <div>Down</div>
-            <div class="percentage">{{54.8 + '%'}}</div>
+            <div class="percentage">
+              {{(selectedEndpoint?.down_ratio) ? selectedEndpoint?.down_ratio : '0' + '%'}}
+            </div>
           </div>
         </div>
 

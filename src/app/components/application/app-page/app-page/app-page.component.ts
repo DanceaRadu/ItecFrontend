@@ -29,6 +29,8 @@ export class AppPageComponent implements OnInit, OnDestroy {
         if (!this.id) return;
         this.applicationService.getAppById(parseInt(this.id)).subscribe(application => {
           this.application = application;
+          console.log("FIRST APP -------------")
+          console.log(application)
           this.establishWebSocketConnection(); // Call this method to establish or re-establish the WebSocket connection
         });
       }
@@ -46,7 +48,9 @@ export class AppPageComponent implements OnInit, OnDestroy {
 
       this.webSocket.onmessage = (event) => {
         try {
+          console.log(event.data)
           const parsedApp: Application = JSON.parse(event.data);
+          console.log(parsedApp)
           let newEndpoints: Endpoint[] = this.application ? JSON.parse(JSON.stringify(this.application.endpoints)) : [];
           this.application?.endpoints?.forEach((endpoint, index) => {
             if (endpoint.log && parsedApp.endpoints && parsedApp.endpoints[index].log != undefined) {
@@ -55,8 +59,6 @@ export class AppPageComponent implements OnInit, OnDestroy {
           })
           parsedApp.endpoints = newEndpoints
           this.application = parsedApp;
-          console.log(parsedApp)
-          console.log(this.application)
         } catch (error) {
           console.log("Error parsing json")
         }

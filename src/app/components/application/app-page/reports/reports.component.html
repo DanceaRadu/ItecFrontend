@@ -11,7 +11,7 @@
     <div class="list">
       <div *ngFor="let bug of app?.bugs" class="single-bug-container">
         <div>{{ formatDateAndTime(bug.timestamp) }}</div>
-        <div>{{ bug.description }}</div>
+        <div class="message">{{ bug.description }}</div>
       </div>
     </div>
   </div>

@@ -26,12 +26,15 @@ export class ReportsComponent {
     if(date === undefined) return '-';
 
     let actualDate = new Date(date)
-    console.log(actualDate)
-    return actualDate.getFullYear() + '-' +
-      (actualDate.getMonth() + 1) + '-' +
-      actualDate.getDate() + ' ' +
-      actualDate.getHours() + ':' +
-      actualDate.getMinutes();
+    return new Intl.DateTimeFormat("en-US", {
+      year: 'numeric',
+      month: 'long',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).format(actualDate);
   };
 
 }
