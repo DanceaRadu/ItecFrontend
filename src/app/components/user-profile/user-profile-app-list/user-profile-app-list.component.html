@@ -1,6 +1,7 @@
 <div class="list-outer-container">
   <div *ngIf="userProfile === null" class="lds-dual-ring"></div>
   <button *ngIf="userProfile" mat-raised-button color="accent" class="add-button" [routerLink]="['/apps', 'create']">Add new app</button>
+  <div class="tw-mt-4" *ngIf="userProfile?.addedApplications?.length === 0">You have not added any apps yet</div>
   <div class="list">
     <mat-accordion>
       <mat-expansion-panel hideToggle *ngFor="let app of userProfile?.addedApplications">

@@ -3,6 +3,11 @@
   font-weight: bold;
 }
 
+.selected {
+  background-color: var(--accent-color)!important;
+  color: white;
+}
+
 .control-buttons-container {
   width: fit-content;
   display: flex;

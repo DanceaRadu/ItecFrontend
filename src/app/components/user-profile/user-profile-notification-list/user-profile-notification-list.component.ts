@@ -34,8 +34,8 @@ export class UserProfileNotificationListComponent implements OnInit {
     }
   }
 
-  handleMarkAsResolved(bugId: number): void {
+  handleMarkAsResolved(bugId: number | undefined): void {
+    if(!bugId) return;
     this.userProfileService.markBugAsResolved(bugId);
   }
-
 }

@@ -24,8 +24,8 @@ export class UserProfileComponent implements OnInit{
       this.userProfileService.login();
     } else {
       this.dialog.open(UserProfileDialogComponent, {
-        height: '250px',
-        width: '300px'
+        height: '300px',
+        width: '350px'
       });
     }
   }

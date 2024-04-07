@@ -1,9 +1,10 @@
 <div class="bug-outer-container">
+  <div class="tw-mt-4" *ngIf="getBugList().length === 0">You have no bug reports. Yey!</div>
   <div *ngFor="let bug of getBugList()" class="bug-container">
     <div class="tw-font-bold">{{getAppNameByBugId(bug.uid!)}}</div>
     <div>12 feb 2024</div>
     <div>This is the error message</div>
-    <button mat-raised-button color="accent" (click)="handleMarkAsResolved(bug!!.uid)">
+    <button mat-raised-button color="accent" (click)="handleMarkAsResolved(bug.uid)">
       Mark as resolved
     </button>
   </div>

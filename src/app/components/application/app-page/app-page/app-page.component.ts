@@ -29,9 +29,7 @@ export class AppPageComponent implements OnInit, OnDestroy {
         if (!this.id) return;
         this.applicationService.getAppById(parseInt(this.id)).subscribe(application => {
           this.application = application;
-          console.log("FIRST APP -------------")
-          console.log(application)
-          this.establishWebSocketConnection(); // Call this method to establish or re-establish the WebSocket connection
+          this.establishWebSocketConnection();
         });
       }
     });

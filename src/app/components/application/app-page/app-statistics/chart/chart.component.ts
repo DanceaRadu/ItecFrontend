@@ -17,11 +17,11 @@ export class ChartComponent implements OnChanges {
           data: this.logData
             ?.sort((a, b) => new Date(a.timestamp!).getTime() - new Date(b.timestamp!).getTime())
             .slice(-50)
-            .map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
+            .map(log => [new Date(log.timestamp!).getTime() / 10000 - 171244900 , log.responseTime]),
           label: 'Response Time',
-        } as ChartDataset
+          borderColor: 'rgb(94, 53, 177)',
+        } as ChartDataset,
       ],
-
     };
   }
 
@@ -57,7 +57,7 @@ export class ChartComponent implements OnChanges {
         data: this.logData
           ?.sort((a, b) => new Date(a.timestamp!).getTime() - new Date(b.timestamp!).getTime())
           .slice(-50)
-          .map(log => [new Date(log.timestamp!).getTime(), log.responseTime]),
+          .map(log => [new Date(log.timestamp!).getTime() / 10000 - 171244900 , log.responseTime]),
         label: 'Response Time',
         borderColor: 'rgb(120, 120, 120)',
         backgroundColor: 'rgba(200, 0, 0, 1)',

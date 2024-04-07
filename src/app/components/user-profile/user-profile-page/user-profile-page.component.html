@@ -1,8 +1,8 @@
 <div class="user-profile-outer-container">
   <div class="username">{{userProfile ? userProfile.username : "Loading..."}}</div>
   <div class="control-buttons-container">
-    <button mat-raised-button  [routerLink]="['/user-profile', 'apps']">Your added apps</button>
-    <button mat-raised-button  [routerLink]="['/user-profile', 'notifications']">Notifications</button>
+    <button mat-raised-button [ngClass]="isRouteActive('user-profile/apps') ? 'selected' : ''"  [routerLink]="['/user-profile', 'apps']">Your added apps</button>
+    <button mat-raised-button [ngClass]="isRouteActive('user-profile/notifications') ? 'selected' : ''" [routerLink]="['/user-profile', 'notifications']">Notifications</button>
   </div>
   <router-outlet></router-outlet>
 </div>

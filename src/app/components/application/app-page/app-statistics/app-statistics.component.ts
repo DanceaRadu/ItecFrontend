@@ -23,7 +23,6 @@ export class AppStatisticsComponent implements OnChanges {
 
     this.applicationService.getRatioByEndpointId(this.selectedEndpoint?.uid!!).subscribe(ratio => {
       this.currentRatio = ratio;
-      console.log(ratio)
     })
 
   }
@@ -45,7 +44,6 @@ export class AppStatisticsComponent implements OnChanges {
     this.selectedEndpoint = this.app.endpoints?.find(endpoint => endpoint.relativeUrl === this.selectedEndpointRelativeUrl);
     this.applicationService.getRatioByEndpointId(this.selectedEndpoint?.uid!!).subscribe(ratio => {
       this.currentRatio = ratio;
-      console.log(ratio)
     })
   }
 
@@ -62,12 +60,12 @@ export class AppStatisticsComponent implements OnChanges {
   getDownTimeString(downTime: number | undefined): string {
     if(downTime === undefined) return "no info";
     if(downTime > 60) {
-      return (downTime/60).toFixed(2) + " minutes";
+      return (downTime/30).toFixed(2) + " minutes";
     }
     if(downTime > 3600) {
-      return (downTime/3600).toFixed(2) + " hours";
+      return (downTime/1800).toFixed(2) + " hours";
     }
-    return Math.ceil(downTime) + " seconds";
+    return Math.ceil(downTime*2) + " seconds";
   }
 
   getPercentage(ratio: number | undefined) {
