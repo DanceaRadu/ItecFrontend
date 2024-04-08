@@ -10,7 +10,7 @@
 
       <div class="summary-tab">
         <div class="tw-text-lg tw-mb-4">Last checked status</div>
-        <div class="status" [ngClass]="getStatusClasses(app.status)">{{ app.status }}</div>
+        <div class="status" [ngClass]="getStatusClasses(getAppStatus(app))">{{ getAppStatus(app) }}</div>
       </div>
 
       <div class="vertical-line"></div>
