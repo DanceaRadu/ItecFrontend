@@ -73,4 +73,10 @@ export class AppStatisticsComponent implements OnChanges {
     return Math.round(ratio * 100) + "%";
   }
 
+  getAppStatus(app: Application): string {
+    if(app.downTime && app.downTime > 0) return "Down";
+    if(app.bugs?.length == 0) return 'Stable';
+    else return 'Unstable';
+  }
+
 }
